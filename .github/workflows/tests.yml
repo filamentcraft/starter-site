@@ -1,0 +1,43 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    env:
+      HAS_LICENSE: ${{ secrets.FILAMENTCRAFT_KEY != '' }}
+
+    steps:
+      - name: Explain skipped run
+        if: env.HAS_LICENSE != 'true'
+        run: echo "::notice::Add FILAMENTCRAFT_EMAIL and FILAMENTCRAFT_KEY as repository secrets to install FilamentCraft and run the tests."
+
+      - uses: actions/checkout@v4
+        if: env.HAS_LICENSE == 'true'
+
+      - uses: shivammathur/setup-php@v2
+        if: env.HAS_LICENSE == 'true'
+        with:
+          php-version: '8.4'
+          coverage: none
+
+      - name: Install dependencies
+        if: env.HAS_LICENSE == 'true'
+        run: composer install --no-interaction --prefer-dist
+        env:
+          COMPOSER_AUTH: '{"http-basic":{"packages.filamentcraft.dev":{"username":"${{ secrets.FILAMENTCRAFT_EMAIL }}","password":"${{ secrets.FILAMENTCRAFT_KEY }}"}}}'
+
+      - name: Prepare environment
+        if: env.HAS_LICENSE == 'true'
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      - name: Lint, types and tests
+        if: env.HAS_LICENSE == 'true'
+        run: composer test
