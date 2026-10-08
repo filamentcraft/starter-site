@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "492b4f2141098aab2a2a24d67a74624f",
+    "content-hash": "8eb03b490457ecf08bffdb55f97da269",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -1633,11 +1633,11 @@
         },
         {
             "name": "filamentcraft/filamentcraft",
-            "version": "v1.40.21",
+            "version": "v1.41.2",
             "dist": {
                 "type": "zip",
-                "url": "https://packages.filamentcraft.dev/dist/v1.40.21.zip",
-                "shasum": "68047ec10c4da8b9a4503bd3a07c40c71e935133"
+                "url": "https://packages.filamentcraft.dev/dist/v1.41.2.zip",
+                "shasum": "0500b54a750540f7995f600a3a4d7a95442ea59e"
             },
             "require": {
                 "filament/filament": "^4.0|^5.0",
@@ -1723,7 +1723,7 @@
                 "email": "hello@filamentcraft.dev",
                 "docs": "https://filamentcraft.dev/guide/introduction"
             },
-            "time": "2026-10-02T18:19:10+00:00"
+            "time": "2026-10-08T00:15:00+00:00"
         },
         {
             "name": "fruitcake/php-cors",
